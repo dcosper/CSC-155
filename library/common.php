@@ -47,10 +47,6 @@ function sanitize_username(string $username): string {
 	return htmlentities($username);
 }
 
-function new_user(mysqli $db, string $username) {
-
-}
-
 function redirect(string $url) {
 	header("Location: $url");
 }
@@ -62,7 +58,7 @@ function head(string $title, string $extra="") {
 	}
 	echo "</head>\n";
 	echo "<body>\n";
-	readfile("library/header.html");
+	require_once("library/header.php");
 }
 
 function footer() {
@@ -108,4 +104,8 @@ function init_session() {
 	$_SESSION["role"] = $_SESSION["role"] ?? ROLE_GUEST;
 }
 init_session();
+
+if (isset($_GET["logout"])) {
+	logout();
+}
 ?>

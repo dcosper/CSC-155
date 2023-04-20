@@ -27,15 +27,26 @@ if (keys_exist($_POST, ["username", "password"])) {
 }
 ?>
 
+<?php
+function echo_default(string $key) {
+	if (isset($_POST[$key])) {
+		echo "value='".htmlentities($_POST[$key]) . "'";
+	}
+}
+?>
+
+<a href="signup.php">Create an account ></a>
+<br>
+<br>
 <form method="POST">
 	<table>
 		<tr>
 			<td><label for="username">Username:</label>
-			<td><input type="text" maxlength="255" required autocomplete="on" id="username" name="username"></td>
+			<td><input <?php echo_default("username") ?> type="text" maxlength="255" required autocomplete="on" id="username" name="username"></td>
 		</tr>
 		<tr>
 			<td><label for="password">Password:</label>
-			<td><input type="password" required id="password" name="password"></td>
+			<td><input <?php echo_default("password") ?> type="password" required id="password" name="password"></td>
 		</tr>
 	</table>
 	<br>

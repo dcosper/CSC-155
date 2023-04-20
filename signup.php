@@ -3,6 +3,7 @@
 <?php
 if (keys_exist($_POST, ["username", "email", "password", "confirm_password"])) {
 	$username = $_POST["username"];
+	$email = $_POST["email"];
 	$password = $_POST["password"];
 	$confirm_password = $_POST["confirm_password"];
 
@@ -32,8 +33,8 @@ if (keys_exist($_POST, ["username", "email", "password", "confirm_password"])) {
 			$username = sanitize_username($username);
 
 			$conn = connect_to_db();
-			$template = $conn->prepare("INSERT INTO final_users (username, password) VALUES (?,?)");
-			$template->bind_param("ss", $username, $hashed_password);
+			$template = $conn->prepare("INSERT INTO final_users (username, email, password) VALUES (?,?,?)");
+			$template->bind_param("sss", $username, $email, $hashed_password);
 
 			if (!$template->execute()) {
 				if (user_exists($conn, $username)) {
@@ -54,11 +55,14 @@ if (keys_exist($_POST, ["username", "email", "password", "confirm_password"])) {
 <?php
 function echo_default(string $key) {
 	if (isset($_POST[$key])) {
-		echo "default='".htmlentities($_POST[$key]) . "'";
+		echo "value='".htmlentities($_POST[$key]) . "'";
 	}
 }
 ?>
 
+<a href="login.php">< Log into an existing account</a>
+<br>
+<br>
 <form method="POST">
 	<table>
 		<tr>

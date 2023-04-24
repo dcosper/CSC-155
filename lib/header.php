@@ -14,8 +14,12 @@ function echo_navbar_page(string $url, string $title, float $role = ROLE_GUEST) 
 	<a href="index.php"><h1>The Coolest Site</h1></a>
 	<?php
 	if (isset($_SESSION["username"])) {
+		$name = $_SESSION["username"];
+		if (isset($_COOKIE["nickname"])) {
+			$name = $_COOKIE["nickname"] . " ($name)";
+		}
 		echo "<p>";
-		echo "Logged in as: {$_SESSION["username"]}";
+		echo "Logged in as: $name";
 		echo "<br>";
 		echo "<a href='?logout=1'>Log out</a>";
 		echo "</p>";

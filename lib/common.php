@@ -10,7 +10,7 @@ CSC-155-001DR_2023SP -->
 <head>
 	<meta charset='UTF-8' />
 	<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-	<link href='library/style.css' rel='stylesheet' />
+	<link href='lib/style.css' rel='stylesheet' />
 
 <?php
 define("ROLE_GUEST", 0);
@@ -48,6 +48,26 @@ function get_user(mysqli $db, string $sanitized_username) {
 	}
 }
 
+function current_name(): ?string {
+	if (isset($_SESSION["username"])) {
+		if (isset($_COOKIE["nickname"])) {
+			return $_COOKIE["nickname"] . " ({$_SESSION["username"]})";
+		}
+		return $_SESSION["username"];
+	}
+}
+
+function optional_default($table, $key): string {
+	if (isset($table[$key])) {
+		return "value='{$table[$key]}'";
+	}
+	return "";
+}
+
+function delete_cookie(string $name) {
+	setcookie($name, "", -1, "/");
+}
+
 function sanitize_username(string $username): string {
 	return htmlentities($username);
 }
@@ -63,11 +83,11 @@ function head(string $title, string $extra="") {
 	}
 	echo "</head>\n";
 	echo "<body>\n";
-	require_once("library/header.php");
+	require("lib/header.php");
 }
 
 function footer() {
-	readfile('library/footer.html');
+	readfile('lib/footer.html');
 }
 
 function require_role(int $role) {

@@ -4,7 +4,7 @@ Dylan Cosper
 CSC-155-001DR_2023SP -->
 <?php
 $ITEM_NAME = "Automation Science Pack";
-$ITEM_IMAGE = "automation_pack.png";
+$ITEM_ID = "Automation_science_pack";
 $ITEM_INDEX = "0";
 require("lib/shop.php");
 ?>

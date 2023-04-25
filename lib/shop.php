@@ -45,7 +45,9 @@ $pluralized_name = $ITEM_NAME . $maybe_s;
 ?>
 
 <div class="itemcontainer">
-	<img class="itemimage" width=36 height=36 <?php echo "src='images/$ITEM_IMAGE' alt='$ITEM_NAME'" ?>>
+	<a <?php echo "href='https://wiki.factorio.com/$ITEM_ID'" ?>>
+		<img class="itemimage" width=36 height=36 <?php echo "src='images/$ITEM_ID.png' alt='$ITEM_NAME'" ?>>
+	</a>
 	<div class="itemtext"><?php echo $total ?></div>
 </div>
 <p>You have <?php echo "$total $pluralized_name." ?></p>

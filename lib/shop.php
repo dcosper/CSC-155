@@ -26,7 +26,6 @@ if (isset($_POST["action"])) {
 }
 ?>
 
-
 <?php
 function disable_if_0() {
 	global $total;
@@ -45,6 +44,10 @@ $maybe_s = ($total == 1) ? "" : "s";
 $pluralized_name = $ITEM_NAME . $maybe_s;
 ?>
 
+<div class="itemcontainer">
+	<img class="itemimage" width=36 height=36 <?php echo "src='images/$ITEM_IMAGE' alt='$ITEM_NAME'" ?>>
+	<div class="itemtext"><?php echo $total ?></div>
+</div>
 <p>You have <?php echo "$total $pluralized_name." ?></p>
 <form method="POST">
 	<input type="submit" <?php disable_if_max() ?> name="action" value="Add 1">

@@ -2,6 +2,8 @@
 followed all academic integrity guidelines for this work.
 Dylan Cosper
 CSC-155-001DR_2023SP -->
-<?php require("lib/common.php"); head($ITEM_NAME . "s"); ?>
-
-<?php echo $ITEM_NAME; ?>
+<?php
+$ITEM_NAME = "Automation Science Pack";
+$ITEM_ID = "automation_pack";
+require("lib/shop.php");
+?>

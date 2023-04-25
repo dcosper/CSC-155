@@ -37,7 +37,7 @@ if (keys_exist($_POST, ["username", "email", "password", "confirm_password"])) {
 			$username = sanitize_username($username);
 
 			$conn = connect_to_db();
-			$template = $conn->prepare("INSERT INTO final_users (username, email, password) VALUES (?,?,?)");
+			$template = $conn->prepare("INSERT INTO final_users (username, email, password, item1, item2, item3, item4) VALUES (?,?,?,0,0,0,0)");
 			$template->bind_param("sss", $username, $email, $hashed_password);
 
 			if (!$template->execute()) {

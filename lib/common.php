@@ -114,6 +114,7 @@ function user_exists(mysqli $conn, string $username): bool {
 function logout(): void {
 	session_unset();
 	session_destroy();
+	delete_cookie("nickname");
 	redirect("index.php");
 }
 

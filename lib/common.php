@@ -76,6 +76,24 @@ function redirect(string $url) {
 	header("Location: $url");
 }
 
+function refresh_page() {
+	header("Refresh: 0");
+}
+
+function set_item_count(float $index, float $count) {
+	$_SESSION["items"][$index] = $count;
+
+	$index = $index + 1;
+	$column = "item$index";
+
+	$db = connect_to_db();
+	$statement = $db->prepare("UPDATE final_users SET $column = ? WHERE username = ?");
+	$statement->bind_param("is", $count, $_SESSION["username"]);
+	if (!$statement->execute()) {
+		echo_error("Failed to update database!");
+	}
+}
+
 function head(string $title, string $extra="") {
 	echo "\t<title>$title</title>\n";
 	if (strlen($extra) > 0) {

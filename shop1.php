@@ -5,5 +5,6 @@ CSC-155-001DR_2023SP -->
 <?php
 $ITEM_NAME = "Automation Science Pack";
 $ITEM_ID = "automation_pack";
+$ITEM_INDEX = "0";
 require("lib/shop.php");
 ?>

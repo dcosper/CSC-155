@@ -49,6 +49,7 @@ if (keys_exist($_POST, ["username", "email", "password", "confirm_password"])) {
 			} else {
 				$_SESSION["username"] = $username;
 				$_SESSION["role"] = ROLE_USER;
+				$_SESSION["items"] = array(0, 0, 0, 0);
 				redirect("index.php");
 			}
 		}

@@ -129,6 +129,21 @@ function user_exists(mysqli $conn, string $username): bool {
 	return $result->num_rows > 0;
 }
 
+function has_items_in_cart(): bool {
+	for ($i = 0; $i < 4; $i++) {
+		if ($_SESSION["items"][$i] > 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function empty_cart() {
+	for ($i = 0; $i < 4; $i++) {
+		set_item_count($i, 0);
+	}
+}
+
 function logout(): void {
 	session_unset();
 	session_destroy();

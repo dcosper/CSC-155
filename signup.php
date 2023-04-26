@@ -47,6 +47,9 @@ if (keys_exist($_POST, ["username", "email", "password", "confirm_password"])) {
 					echo_error("Failed to add user to database!");
 				}
 			} else {
+				$user = get_user($conn, $username);
+
+				$_SESSION["id"] = $user["id"];
 				$_SESSION["username"] = $username;
 				$_SESSION["role"] = ROLE_USER;
 				$_SESSION["items"] = array(0, 0, 0, 0);

@@ -21,6 +21,7 @@ if (keys_exist($_POST, ["username", "password"])) {
 	} else {
 		$password_matches = password_verify($password, $user["password"]);
 		if ($password_matches) {
+			$_SESSION["id"] = $user["id"];
 			$_SESSION["username"] = $username;
 			$_SESSION["role"] = ROLE_USER;
 			$_SESSION["items"] = array($user["item1"], $user["item2"], $user["item3"], $user["item4"]);

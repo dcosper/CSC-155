@@ -2,7 +2,7 @@
 followed all academic integrity guidelines for this work.
 Dylan Cosper
 CSC-155-001DR_2023SP -->
-<?php require("lib/common.php"); head($ITEM_NAME . "s"); ?>
+<?php require("lib/common.php"); require_role(ROLE_USER); head($ITEM_NAME . "s"); ?>
 
 <?php
 $total = $_SESSION["items"][$ITEM_INDEX];

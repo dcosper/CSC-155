@@ -144,13 +144,6 @@ function empty_cart() {
 	}
 }
 
-function logout(): void {
-	session_unset();
-	session_destroy();
-	delete_cookie("nickname");
-	redirect("index.php");
-}
-
 function is_being_run(): bool {
 	return __FILE__ == $_SERVER["SCRIPT_FILENAME"];
 }
@@ -165,6 +158,6 @@ function init_session() {
 init_session();
 
 if (isset($_GET["logout"])) {
-	logout();
+	redirect("logout.php");
 }
 ?>

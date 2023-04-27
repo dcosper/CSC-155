@@ -21,7 +21,7 @@ function echo_navbar_page(string $url, string $title, float $role = ROLE_GUEST) 
 		echo "<p>";
 		echo "Logged in as: $name";
 		echo "<br>";
-		echo "<a href='?logout=1'>Log out</a>";
+		echo "<a href='logout.php'>Log out</a>";
 		echo "</p>";
 	}
 	?>

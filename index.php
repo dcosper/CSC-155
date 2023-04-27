@@ -20,7 +20,7 @@ if (isset($_POST["reset"])) {
 if (isset($_SESSION["username"])) {
 	$name = current_name();
 	$default_nickname = optional_default($_COOKIE, "nickname");
-	echo "<p>Logged in as: $name | <a href='?logout=1'>Log out</a></p>";
+	echo "<p>Logged in as: $name | <a href='logout.php'>Log out</a></p>";
 	echo "<form method='POST'>
 	<input $default_nickname name='nickname' type='text'>
 	<input type='submit' value='Set Nickname'>

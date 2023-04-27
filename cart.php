@@ -5,27 +5,32 @@ CSC-155-001DR_2023SP -->
 <?php require("lib/common.php"); require_role(ROLE_USER); head("Your cart"); ?>
 
 <?php
-if (isset($_POST["action"])) {
+function handle_form() {
+	if (!isset($_POST["action"])) {
+		return;
+	}
+
 	$action = $_POST["action"];
-	if ($action == "Checkout") {
+	if ($action == "Empty Cart") {
+		empty_cart();
+	} elseif ($action == "Checkout") {
 		if (!has_items_in_cart()) {
 			echo_error("You don't have anything in your cart!");
-		} else {
-			$db = connect_to_db();
-			$statement = $db->prepare("INSERT INTO final_checkout (user_id, item1, item2, item3, item4, checkout_date) VALUES (?,?,?,?,?,NOW())");
-			$statement->bind_param("iiiii", $_SESSION["id"], $_SESSION["items"][0], $_SESSION["items"][1], $_SESSION["items"][2], $_SESSION["items"][3]);
-			if (!$statement->execute()) {
-				echo_error("Failed to insert order into database!");
-			} else {
-				empty_cart();
-				refresh_page();
-			}
+			return;
 		}
-	} elseif ($action == "Empty Cart") {
+		$db = connect_to_db();
+		$statement = $db->prepare("INSERT INTO final_checkout (user_id, item1, item2, item3, item4, checkout_date) VALUES (?,?,?,?,?,NOW())");
+		$statement->bind_param("iiiii", $_SESSION["id"], $_SESSION["items"][0], $_SESSION["items"][1], $_SESSION["items"][2], $_SESSION["items"][3]);
+		if (!$statement->execute()) {
+			echo_error("Failed to insert order into database!");
+			return;
+		}
 		empty_cart();
-		refresh_page();
 	}
+
+	refresh_page();
 }
+handle_form();
 ?>
 
 <form method="POST">

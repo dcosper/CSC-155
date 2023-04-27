@@ -129,6 +129,11 @@ function user_exists(mysqli $conn, string $username): bool {
 	return $result->num_rows > 0;
 }
 
+function username_from_id(mysqli $db, float $id): ?string {
+	$result = $db->query("SELECT username FROM final_users WHERE id=$id");
+	return $result->fetch_assoc()["username"];
+}
+
 function has_items_in_cart(): bool {
 	for ($i = 0; $i < 4; $i++) {
 		if ($_SESSION["items"][$i] > 0) {

@@ -27,7 +27,7 @@ function echo_navbar_page(string $url, string $title, float $role = ROLE_GUEST) 
 	?>
 	<ul class="navbar">
 		<?php echo_navbar_page("index.php", "Home") ?>
-		<?php echo_navbar_page("users.php", "Users", ROLE_USER) ?>
+		<?php echo_navbar_page("admin.php", "Admin", ROLE_ADMIN) ?>
 		<?php echo_navbar_page("shop1.php", "Item 1", ROLE_USER) ?>
 		<?php echo_navbar_page("shop2.php", "Item 2", ROLE_USER) ?>
 		<?php echo_navbar_page("shop3.php", "Item 3", ROLE_USER) ?>

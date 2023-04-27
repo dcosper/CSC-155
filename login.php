@@ -23,7 +23,7 @@ if (keys_exist($_POST, ["username", "password"])) {
 		if ($password_matches) {
 			$_SESSION["id"] = $user["id"];
 			$_SESSION["username"] = $username;
-			$_SESSION["role"] = ROLE_USER;
+			$_SESSION["role"] = $user["admin"] == 1 ? ROLE_ADMIN : ROLE_USER;
 			$_SESSION["items"] = array($user["item1"], $user["item2"], $user["item3"], $user["item4"]);
 			redirect("index.php");
 		} else {

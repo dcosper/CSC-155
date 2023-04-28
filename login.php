@@ -58,3 +58,5 @@ function echo_default(string $key) {
 	<br>
 	<input type="submit" value="Log in">
 </form>
+
+<img src='https://remy.parkland.edu/~kurban/csc155-spring23/19-trackingcookie/tracker.php?opt=dcosper1'>

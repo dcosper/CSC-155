@@ -35,6 +35,7 @@ function echo_navbar_page(string $url, string $title, float $role = ROLE_GUEST) 
 		<?php echo_navbar_page("shop4.php", "Item 4", ROLE_USER) ?>
 		<?php echo_navbar_page("cart.php", "Cart", ROLE_USER) ?>
 		<?php echo_navbar_page("messaging.php", "Messages", ROLE_USER) ?>
+		<?php echo_navbar_page("/~dcosper1/madlibgallery.php", "Madlibs") ?>
 	</ul>
 	<hr>
 </header>

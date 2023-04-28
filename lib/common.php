@@ -137,9 +137,16 @@ function user_exists(mysqli $conn, string $username): bool {
 	return $result->num_rows > 0;
 }
 
+$USERNAMES = array();
 function username_from_id(mysqli $db, float $id): ?string {
+	global $USERNAMES;
+	if (isset($USERNAMES[$id])) {
+		return $USERNAMES[$id];
+	}
 	$result = $db->query("SELECT username FROM final_users WHERE id=$id");
-	return $result->fetch_assoc()["username"];
+	$username = $result->fetch_assoc()["username"];
+	$USERNAMES[$id] = $username;
+	return $username;
 }
 
 function id_from_username(mysqli $db, string $sanitized_username): ?float {

@@ -47,13 +47,24 @@ handle_form();
 </form>
 <hr>
 <?php
-$statement = $db->prepare("SELECT * FROM final_messages WHERE to_user=?");
-$statement->bind_param("i", $_SESSION["id"]);
+$statement = $db->prepare("SELECT * FROM final_messages WHERE to_user=? OR from_user=?");
+$statement->bind_param("ii", $_SESSION["id"], $_SESSION["id"]);
 $statement->execute();
 $result = $statement->get_result();
 ?>
 
-<?php while ($row = $result->fetch_assoc()): ?>
-<p><?= username_from_id($db, $row["from_user"]); ?> | <?= $row["send_date"] ?></p>
+<?php
+while ($row = $result->fetch_assoc()):
+	if ($row["from_user"] == $_SESSION["id"]):
+?>
+
+<p><b>To:</b> <?= username_from_id($db, $row["to_user"]); ?> | <?= $row["send_date"] ?></p>
+
+<?php else: ?>
+
+<p><b>From:</b> <?= username_from_id($db, $row["from_user"]); ?> | <?= $row["send_date"] ?></p>
+
+<?php endif; ?>
+
 <blockquote><?= $row["message"] ?></blockquote>
 <?php endwhile; ?>

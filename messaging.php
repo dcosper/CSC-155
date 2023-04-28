@@ -59,12 +59,11 @@ while ($row = $result->fetch_assoc()):
 ?>
 
 <p><b>To:</b> <?= username_from_id($db, $row["to_user"]); ?> | <?= $row["send_date"] ?></p>
-
+<blockquote class="to"><?= $row["message"] ?></blockquote>
 <?php else: ?>
 
 <p><b>From:</b> <?= username_from_id($db, $row["from_user"]); ?> | <?= $row["send_date"] ?></p>
-
+<blockquote class="from"><?= $row["message"] ?></blockquote>
 <?php endif; ?>
 
-<blockquote><?= $row["message"] ?></blockquote>
 <?php endwhile; ?>

@@ -79,6 +79,13 @@ td {
 }
 
 blockquote {
-	background-color: #0003;
 	padding: 10px;
+}
+
+.to {
+	background-color: #0001;
+}
+
+.from {
+	background-color: #0003;
 }

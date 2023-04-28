@@ -4,8 +4,9 @@ Dylan Cosper
 CSC-155-001DR_2023SP -->
 <?php
 function echo_navbar_page(string $url, string $title, float $role = ROLE_GUEST) {
+	$class = str_ends_with($_SERVER["PHP_SELF"], $url) ? "class='currentpage'" : "";
 	if ($_SESSION["role"] >= $role) {
-		echo "<li><a href='$url'>$title</a></li>";
+		echo "<li><a $class href='$url'>$title</a></li>";
 	}
 }
 ?>
@@ -33,6 +34,7 @@ function echo_navbar_page(string $url, string $title, float $role = ROLE_GUEST) 
 		<?php echo_navbar_page("shop3.php", "Item 3", ROLE_USER) ?>
 		<?php echo_navbar_page("shop4.php", "Item 4", ROLE_USER) ?>
 		<?php echo_navbar_page("cart.php", "Cart", ROLE_USER) ?>
+		<?php echo_navbar_page("messaging.php", "Messages", ROLE_USER) ?>
 	</ul>
 	<hr>
 </header>

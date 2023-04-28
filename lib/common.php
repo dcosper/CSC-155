@@ -120,6 +120,14 @@ function guest_only() {
 	}
 }
 
+function str_ends_with(string $haystack, string $needle): bool {
+	$length = strlen( $needle );
+	if( !$length ) {
+		return true;
+	}
+	return substr( $haystack, -$length ) === $needle;
+}
+
 function user_exists(mysqli $conn, string $username): bool {
 	$statement = $conn->prepare("SELECT * FROM final_users WHERE username=?");
 	$statement->bind_param("s", $username);
@@ -132,6 +140,14 @@ function user_exists(mysqli $conn, string $username): bool {
 function username_from_id(mysqli $db, float $id): ?string {
 	$result = $db->query("SELECT username FROM final_users WHERE id=$id");
 	return $result->fetch_assoc()["username"];
+}
+
+function id_from_username(mysqli $db, string $sanitized_username): ?float {
+	$statement = $db->prepare("SELECT id FROM final_users WHERE username=?");
+	$statement->bind_param("s", $sanitized_username);
+	$statement->execute();
+	$result = $statement->get_result();
+	return $result->fetch_assoc()["id"];
 }
 
 function has_items_in_cart(): bool {

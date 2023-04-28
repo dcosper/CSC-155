@@ -16,7 +16,8 @@ hr {
 	color: #4e4e55;
 }
 
-input {
+input,
+textarea {
 	color: black;
 }
 
@@ -53,6 +54,10 @@ td {
 	background-color: #fff3;
 }
 
+.navbar li .currentpage {
+	background-color: #fff3;
+}
+
 .itemcontainer {
 	position: relative;
 	text-align: center;
@@ -71,4 +76,9 @@ td {
 	right: 5px;
 	font-size: 0.8em;
 	text-shadow: 0px 0px 3px black;
+}
+
+blockquote {
+	background-color: #0003;
+	padding: 10px;
 }
